@@ -1,5 +1,6 @@
 package io.cursedfunction.plugins
 
+import io.cursedfunction.content.pageHead
 import io.cursedfunction.content.schoolsScreen
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -10,8 +11,6 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.html.body
 import kotlinx.html.classes
-import kotlinx.html.head
-import kotlinx.html.link
 import java.io.File
 
 fun Application.configureRouting(dao: SchoolDao) {
@@ -58,12 +57,7 @@ fun Application.configureRouting(dao: SchoolDao) {
         get("/") {
             val schoolList = dao.getAll()
             call.respondHtml(status = HttpStatusCode.OK) {
-                head {
-                    link {
-                        href = "css/output.css"
-                        rel = "stylesheet"
-                    }
-                }
+                pageHead()
                 body {
                     classes = setOf("bg-ktor-football")
                     schoolsScreen(schoolList)

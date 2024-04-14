@@ -24,7 +24,7 @@ fun FlowContent.schoolsScreen(schools: List<School>) {
 
                 img {
                     classes = setOf("size-6")
-                    src = "img/${files.random()}"
+                    src = "img/${school.logoToken}.svg"
                 }
                 p {
                     classes = setOf("text-cyan-950")
