@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
-        'ktor-football': '#2A2D30',
+        // 'ktor-football': '#2A2D30',
+        'ktor-football': '#FFFFFF',
 
       }
     },

@@ -558,24 +558,14 @@ video {
   position: static;
 }
 
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-.my-2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
-}
-
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
 }
 
 .block {
@@ -590,28 +580,9 @@ video {
   display: flex;
 }
 
-.size-1 {
-  width: 0.25rem;
-  height: 0.25rem;
-}
-
-.size-4 {
-  width: 1rem;
-  height: 1rem;
-}
-
-.size-12 {
-  width: 3rem;
-  height: 3rem;
-}
-
 .size-6 {
   width: 1.5rem;
   height: 1.5rem;
-}
-
-.flex-none {
-  flex: none;
 }
 
 .flex-row {
@@ -624,7 +595,7 @@ video {
 
 .bg-ktor-football {
   --tw-bg-opacity: 1;
-  background-color: rgb(42 45 48 / var(--tw-bg-opacity));
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .lowercase {
@@ -634,6 +605,26 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-slate-800 {
+  --tw-text-opacity: 1;
+  color: rgb(30 41 59 / var(--tw-text-opacity));
+}
+
+.text-slate-50 {
+  --tw-text-opacity: 1;
+  color: rgb(248 250 252 / var(--tw-text-opacity));
+}
+
+.text-slate-200 {
+  --tw-text-opacity: 1;
+  color: rgb(226 232 240 / var(--tw-text-opacity));
+}
+
+.text-cyan-950 {
+  --tw-text-opacity: 1;
+  color: rgb(8 51 68 / var(--tw-text-opacity));
 }
 
 .filter {

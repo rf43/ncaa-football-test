@@ -27,7 +27,7 @@ fun FlowContent.schoolsScreen(schools: List<School>) {
                     src = "img/${files.random()}"
                 }
                 p {
-                    classes = setOf("text-white")
+                    classes = setOf("text-cyan-950")
                     +"${school.schoolName} - ${school.schoolNameAbbr}"
                 }
             }
