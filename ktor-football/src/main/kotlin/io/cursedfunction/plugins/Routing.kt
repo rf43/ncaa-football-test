@@ -55,6 +55,7 @@ fun Application.configureRouting(dao: SchoolDao) {
         }
 
         staticFiles("/img", File("src/main/resources/static/img"))
+        staticFiles("/css", File("src/main/resources/static/css"))
 
         get("/") {
             val schoolList = dao.getAll()
@@ -68,18 +69,6 @@ fun Application.configureRouting(dao: SchoolDao) {
                 body {
                     classes = setOf("bg-ktor-football")
                     schoolsScreen(schoolList)
-                }
-            }
-        }
-
-        get("/css/{page}") {
-            call.parameters["page"]?.let { page ->
-                when(page) {
-                    "output.css" -> {
-                        call.respondText(ContentType.Text.CSS) {
-                            File("src/main/resources/static/css/output.css").readText()
-                        }
-                    }
                 }
             }
         }

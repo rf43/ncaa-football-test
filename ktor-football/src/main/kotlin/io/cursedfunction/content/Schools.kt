@@ -17,7 +17,7 @@ fun FlowContent.schoolsScreen(schools: List<School>) {
         "474",
         "477",
     )
-    
+
     h1 {
         classes = setOf("screen-title")
         +"Schools"
