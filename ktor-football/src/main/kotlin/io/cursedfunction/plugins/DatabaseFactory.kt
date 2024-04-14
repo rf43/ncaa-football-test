@@ -10,9 +10,12 @@ import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransacti
 object DatabaseFactory {
     fun init() {
         Database.connect(
-            url = "jdbc:postgresql://localhost:5432/postgres",
+            url = "jdbc:postgresql://localhost:5432/ncaa_football",
             driver = "org.postgresql.Driver",
-            user = "richfriedel",
+            user = "cursedfunction",
+            setupConnection = { connection ->
+                connection.schema = "schema_main"
+            }
         )
     }
 
@@ -29,8 +32,8 @@ data class School(
 
 object Schools : Table() {
     val schoolId = integer("school_id").autoIncrement()
-    val schoolName = varchar("school_name", 128)
-    val schoolNameAbbr = varchar("school_name_abbr", 10)
+    val schoolName = varchar("full_name", 150)
+    val schoolNameAbbr = varchar("abbreviated_name", 10)
 
     override val primaryKey = PrimaryKey(schoolId, name = "school_id_pk")
 }
