@@ -31,16 +31,8 @@ fun Application.configureRouting(dao: SchoolDao) {
                         ContentType.Text.CSS
                     }
 
-                    fileName.endsWith(".js") -> {
+                    fileName.endsWith(".js") || fileName.endsWith(".json") -> {
                         ContentType.Text.JavaScript
-                    }
-
-                    fileName.endsWith(".json") -> {
-                        ContentType.Text.JavaScript
-                    }
-
-                    fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") -> {
-                        ContentType.Image.JPEG
                     }
 
                     fileName.endsWith("svg") -> {
@@ -54,8 +46,14 @@ fun Application.configureRouting(dao: SchoolDao) {
             }
         }
 
-        staticFiles("/img", File("src/main/resources/static/img"))
-        staticFiles("/css", File("src/main/resources/static/css"))
+        staticFiles(
+            remotePath = "/img",
+            dir = File("src/main/resources/static/img")
+        )
+        staticFiles(
+            remotePath = "/css",
+            dir = File("src/main/resources/static/css")
+        )
 
         get("/") {
             val schoolList = dao.getAll()
