@@ -12,7 +12,6 @@ import kotlinx.html.body
 import kotlinx.html.classes
 import kotlinx.html.head
 import kotlinx.html.link
-import kotlinx.serialization.json.Json
 import java.io.File
 
 fun Application.configureRouting(dao: SchoolDao) {
@@ -44,12 +43,19 @@ fun Application.configureRouting(dao: SchoolDao) {
                         ContentType.Image.JPEG
                     }
 
+                    fileName.endsWith("svg") -> {
+                        ContentType.Image.SVG
+                    }
+
                     else -> {
                         ContentType.Text.Plain
                     }
                 }
             }
         }
+
+        staticFiles("/img", File("src/main/resources/static/img"))
+
         get("/") {
             val schoolList = dao.getAll()
             call.respondHtml(status = HttpStatusCode.OK) {

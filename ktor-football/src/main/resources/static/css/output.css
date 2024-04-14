@@ -566,6 +566,26 @@ video {
   display: inline;
 }
 
+.size-1 {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+.size-4 {
+  width: 1rem;
+  height: 1rem;
+}
+
+.size-12 {
+  width: 3rem;
+  height: 3rem;
+}
+
+.size-6 {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 .bg-ktor-football {
   --tw-bg-opacity: 1;
   background-color: rgb(42 45 48 / var(--tw-bg-opacity));
