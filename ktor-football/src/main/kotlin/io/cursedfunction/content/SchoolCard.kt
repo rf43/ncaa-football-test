@@ -36,10 +36,10 @@ fun FlowContent.schoolCard(school: School) {
         }
 
         div {
-            classes = setOf("w-full h-5 bg-slate-900 py-1 px-2")
+            classes = setOf("w-full h-5 bg-slate-900")
 
             p {
-                classes = setOf("text-xs text-slate-50 text-end")
+                classes = setOf("text-xs text-slate-50 text-end mr-2 mt-1")
 
                 +"${school.schoolLocationCity}, ${school.schoolLocationState}"
             }

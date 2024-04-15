@@ -12,6 +12,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.html.body
 import kotlinx.html.classes
+import kotlinx.html.div
 import java.io.File
 
 fun Application.configureRouting(dao: SchoolDao) {
@@ -64,8 +65,13 @@ fun Application.configureRouting(dao: SchoolDao) {
             call.respondHtml(status = HttpStatusCode.OK) {
                 pageHead()
                 body {
-                    classes = setOf("bg-slate-100")
-                    schoolsScreen(schoolList)
+                    classes = setOf("bg-zinc-200")
+                    div {
+                        classes = setOf("pb-8")
+//                        attributes["style"] = """background-image: url('img/background.jpg')"""
+
+                        schoolsScreen(schoolList)
+                    }
                 }
             }
         }
