@@ -1,5 +1,6 @@
 package io.cursedfunction
 
+import io.cursedfunction.data.dao.SchoolDaoImpl
 import io.cursedfunction.plugins.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*

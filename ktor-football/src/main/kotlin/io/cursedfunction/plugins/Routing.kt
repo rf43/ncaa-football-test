@@ -2,6 +2,7 @@ package io.cursedfunction.plugins
 
 import io.cursedfunction.content.pageHead
 import io.cursedfunction.content.schoolsScreen
+import io.cursedfunction.data.dao.SchoolDao
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.html.*
@@ -59,11 +60,11 @@ fun Application.configureRouting(dao: SchoolDao) {
         )
 
         get("/") {
-            val schoolList = dao.getAll()
+            val schoolList = dao.getAllSchools()
             call.respondHtml(status = HttpStatusCode.OK) {
                 pageHead()
                 body {
-                    classes = setOf("bg-slate-50 dark:bg-slate-800")
+                    classes = setOf("bg-slate-100")
                     schoolsScreen(schoolList)
                 }
             }

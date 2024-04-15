@@ -1,11 +1,7 @@
 package io.cursedfunction.plugins
 
 import kotlinx.coroutines.Dispatchers
-import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.Table
-import org.jetbrains.exposed.sql.select
-import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 
 object DatabaseFactory {
@@ -22,67 +18,4 @@ object DatabaseFactory {
 
     suspend fun <T> dbQuery(block: suspend () -> T): T =
         newSuspendedTransaction(Dispatchers.IO) { block() }
-}
-
-@Serializable
-data class School(
-    val schoolId: Int,
-    val schoolName: String,
-    val schoolNameAbbr: String?,
-    val schoolShortName: String,
-    val schoolLocationCity: String,
-    val schoolLocationState: String,
-    val logoToken: String
-)
-
-@Serializable
-data class Logo(
-    val logoId: Int,
-    val logoToken: String
-)
-
-object SchoolsTable : Table() {
-    val schoolId = integer("school_id").autoIncrement()
-    val schoolName = varchar("full_name", 150)
-    val schoolNameAbbr = varchar("abbreviated_name", 10)
-    val schoolShortName = varchar("short_name", 25)
-    val schoolLocationCity = varchar("location_city", 50)
-    val schoolLocationState = varchar("location_state", 2)
-    val logoId = integer("logo_id")
-
-    override val primaryKey = PrimaryKey(schoolId, name = "school_id_pk")
-}
-
-object LogosTable: Table() {
-    val logoId = integer("logo_id").autoIncrement()
-    val logoToken = varchar("logo_token", 10)
-
-    override val primaryKey = PrimaryKey(logoId, name = "logos_pk")
-}
-
-interface SchoolDao {
-    suspend fun getAll(): List<School>
-    suspend fun getLogoToken(id: Int): String
-}
-
-class SchoolDaoImpl : SchoolDao {
-    override suspend fun getAll(): List<School> = DatabaseFactory.dbQuery {
-        SchoolsTable.selectAll().map { row ->
-            School(
-                schoolId = row[SchoolsTable.schoolId],
-                schoolName = row[SchoolsTable.schoolName],
-                schoolNameAbbr = row[SchoolsTable.schoolNameAbbr],
-                schoolShortName = row[SchoolsTable.schoolShortName],
-                schoolLocationCity = row[SchoolsTable.schoolLocationCity],
-                schoolLocationState = row[SchoolsTable.schoolLocationState],
-                logoToken = getLogoToken(row[SchoolsTable.logoId])
-            )
-        }
-    }
-
-    override suspend fun getLogoToken(id: Int): String = DatabaseFactory.dbQuery {
-        LogosTable.select {
-            LogosTable.logoId eq id
-        }.single()[LogosTable.logoToken]
-    }
 }
