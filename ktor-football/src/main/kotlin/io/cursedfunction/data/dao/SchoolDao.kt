@@ -5,7 +5,7 @@ import io.cursedfunction.data.dto.Logo
 import io.cursedfunction.data.dto.School
 
 interface SchoolDao {
-    suspend fun getAllSchools(): List<School>
-    suspend fun getLogo(id: Int): Logo
-    suspend fun getConference(id: Int): Conference
+    suspend fun fetchAllSchools(): List<School>
+    suspend fun fetchLogo(id: Int): Logo
+    suspend fun fetchConference(id: Int): Conference
 }

@@ -61,7 +61,7 @@ fun Application.configureRouting(dao: SchoolDao) {
         )
 
         get("/") {
-            val schoolList = dao.getAllSchools()
+            val schoolList = dao.fetchAllSchools()
             call.respondHtml(status = HttpStatusCode.OK) {
                 pageHead()
                 body {

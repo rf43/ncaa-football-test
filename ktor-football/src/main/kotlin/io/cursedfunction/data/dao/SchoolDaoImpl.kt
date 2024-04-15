@@ -11,7 +11,7 @@ import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 
 class SchoolDaoImpl : SchoolDao {
-    override suspend fun getAllSchools(): List<School> = DatabaseFactory.dbQuery {
+    override suspend fun fetchAllSchools(): List<School> = DatabaseFactory.dbQuery {
         SchoolsTable.selectAll().map { row ->
             School(
                 schoolId = row[SchoolsTable.schoolId],
@@ -20,13 +20,13 @@ class SchoolDaoImpl : SchoolDao {
                 schoolShortName = row[SchoolsTable.schoolShortName],
                 schoolLocationCity = row[SchoolsTable.schoolLocationCity],
                 schoolLocationState = row[SchoolsTable.schoolLocationState],
-                schoolConference = getConference(row[SchoolsTable.schoolConferenceId]),
-                logoToken = getLogo(row[SchoolsTable.logoId]).logoToken
+                schoolConference = fetchConference(row[SchoolsTable.schoolConferenceId]),
+                logoToken = fetchLogo(row[SchoolsTable.logoId]).logoToken
             )
         }
     }
 
-    override suspend fun getConference(id: Int): Conference {
+    override suspend fun fetchConference(id: Int): Conference {
         ConferencesTable.select {
             ConferencesTable.conferenceId eq id
         }.single().let { resultRow ->
@@ -34,12 +34,12 @@ class SchoolDaoImpl : SchoolDao {
                 conferenceId = resultRow[ConferencesTable.conferenceId],
                 fullName = resultRow[ConferencesTable.fullName],
                 shortName = resultRow[ConferencesTable.shortName],
-                logo = getLogo(resultRow[ConferencesTable.logoId])
+                logo = fetchLogo(resultRow[ConferencesTable.logoId])
             )
         }
     }
 
-    override suspend fun getLogo(id: Int): Logo {
+    override suspend fun fetchLogo(id: Int): Logo {
         LogosTable.select {
             LogosTable.logoId eq id
         }.single().let { resultRow ->
