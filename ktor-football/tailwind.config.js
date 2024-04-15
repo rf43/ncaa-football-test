@@ -4,12 +4,16 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
-        // 'ktor-football': '#2A2D30',
-        'ktor-football': '#FFFFFF',
+        // These are not used...
+        // they exist only for reference
+        // Access them using the following syntax:
+        // bg-some-thing-1
+        // bg-some-thing-2
+        'some-thing-1': '#FFFFFF',
+        'some-thing-2': '#2b2b2b',
 
       }
     },
   },
   plugins: [],
 }
-

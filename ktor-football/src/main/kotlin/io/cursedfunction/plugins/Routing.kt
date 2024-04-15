@@ -53,13 +53,17 @@ fun Application.configureRouting(dao: SchoolDao) {
             remotePath = "/css",
             dir = File("src/main/resources/static/css")
         )
+        staticFiles(
+            remotePath = "/script",
+            dir = File("src/main/resources/static/script")
+        )
 
         get("/") {
             val schoolList = dao.getAll()
             call.respondHtml(status = HttpStatusCode.OK) {
                 pageHead()
                 body {
-                    classes = setOf("bg-ktor-football")
+                    classes = setOf("bg-slate-50 dark:bg-slate-800")
                     schoolsScreen(schoolList)
                 }
             }

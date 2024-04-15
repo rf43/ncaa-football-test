@@ -29,6 +29,9 @@ data class School(
     val schoolId: Int,
     val schoolName: String,
     val schoolNameAbbr: String?,
+    val schoolShortName: String,
+    val schoolLocationCity: String,
+    val schoolLocationState: String,
     val logoToken: String
 )
 
@@ -42,6 +45,9 @@ object SchoolsTable : Table() {
     val schoolId = integer("school_id").autoIncrement()
     val schoolName = varchar("full_name", 150)
     val schoolNameAbbr = varchar("abbreviated_name", 10)
+    val schoolShortName = varchar("short_name", 25)
+    val schoolLocationCity = varchar("location_city", 50)
+    val schoolLocationState = varchar("location_state", 2)
     val logoId = integer("logo_id")
 
     override val primaryKey = PrimaryKey(schoolId, name = "school_id_pk")
@@ -66,6 +72,9 @@ class SchoolDaoImpl : SchoolDao {
                 schoolId = row[SchoolsTable.schoolId],
                 schoolName = row[SchoolsTable.schoolName],
                 schoolNameAbbr = row[SchoolsTable.schoolNameAbbr],
+                schoolShortName = row[SchoolsTable.schoolShortName],
+                schoolLocationCity = row[SchoolsTable.schoolLocationCity],
+                schoolLocationState = row[SchoolsTable.schoolLocationState],
                 logoToken = getLogoToken(row[SchoolsTable.logoId])
             )
         }
