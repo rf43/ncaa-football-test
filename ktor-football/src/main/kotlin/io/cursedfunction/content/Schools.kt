@@ -14,7 +14,7 @@ fun FlowContent.schoolsScreen(schools: List<School>) {
     }
 
     div {
-        classes = setOf("grid grid-cols-[repeat(3,320px)] place-content-center gap-4")
+        classes = setOf("grid grid-cols-[repeat(3,320px)] place-content-center gap-5")
 
         schools.forEach { school ->
             schoolCard(school)

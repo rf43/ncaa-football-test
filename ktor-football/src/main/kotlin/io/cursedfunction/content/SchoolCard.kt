@@ -46,10 +46,10 @@ fun FlowContent.schoolCard(school: School) {
         }
 
         div {
-            classes = setOf("flex h-40 place-content-center")
+            classes = setOf("flex h-36 place-content-center")
 
             p {
-                classes = setOf("flex items-center text-4xl font-bold text-slate-50")
+                classes = setOf("flex items-center text-4xl font-bold text-slate-50 drop-shadow-md")
 
                 +"0 - 0"
 
