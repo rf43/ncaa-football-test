@@ -18,13 +18,13 @@ fun FlowContent.schoolCard(school: School) {
             div {
                 classes = setOf("static")
                 img {
-                    classes = setOf("absolute top-1 right-2 size-12")
+                    classes = setOf("absolute top-2 right-2 size-10 drop-shadow")
                     src = "img/${school.schoolConference.logo.logoToken}.svg"
                 }
             }
 
             img {
-                classes = setOf("size-28 w-full mb-2 pt-2")
+                classes = setOf("size-28 w-full mb-2 pt-2 drop-shadow")
                 src = "img/${school.logoToken}.svg"
             }
 
@@ -36,10 +36,10 @@ fun FlowContent.schoolCard(school: School) {
         }
 
         div {
-            classes = setOf("w-full h-5 bg-slate-900")
+            classes = setOf("w-full h-fit bg-slate-900")
 
             p {
-                classes = setOf("text-xs text-slate-50 text-end mr-2 mt-1")
+                classes = setOf("text-xs text-slate-50 opacity-75 text-end pr-2 py-1")
 
                 +"${school.schoolLocationCity}, ${school.schoolLocationState}"
             }
