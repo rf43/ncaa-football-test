@@ -7,5 +7,5 @@ data class Conference(
     val conferenceId: Int,
     val fullName: String,
     val shortName: String,
-    val logo: Logo
+    val logo: Logo?
 )

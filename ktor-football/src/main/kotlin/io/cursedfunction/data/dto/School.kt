@@ -10,6 +10,6 @@ data class School(
     val schoolShortName: String,
     val schoolLocationCity: String,
     val schoolLocationState: String,
-    val schoolConference: Conference,
-    val logoToken: String
+    val schoolConference: Conference?,
+    val logo: Logo?
 )

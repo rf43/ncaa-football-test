@@ -15,17 +15,21 @@ fun FlowContent.schoolCard(school: School) {
         div {
             classes = setOf("relative bg-slate-50 w-full h-52 rounded-t-lg")
 
-            div {
-                classes = setOf("static")
-                img {
-                    classes = setOf("absolute top-2 right-2 size-10 drop-shadow")
-                    src = "img/${school.schoolConference.logo.logoToken}.svg"
+            school.schoolConference?.logo?.logoToken?.let { token ->
+                div {
+                    classes = setOf("static")
+                    img {
+                        classes = setOf("absolute top-2 right-2 size-10 drop-shadow")
+                        src = "img/${token}.svg"
+                    }
                 }
             }
 
-            img {
-                classes = setOf("size-28 w-full mb-2 pt-2 drop-shadow")
-                src = "img/${school.logoToken}.svg"
+            school.logo?.logoToken?.let { token ->
+                img {
+                    classes = setOf("size-28 w-full mb-2 pt-2 drop-shadow")
+                    src = "img/${token}.svg"
+                }
             }
 
             p {

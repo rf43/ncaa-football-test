@@ -61,6 +61,21 @@ fun Application.configureRouting(dao: SchoolDao) {
         )
 
         get("/") {
+//            val addSchool = dao.addSchool(
+//                School(
+//                    schoolId = 0,
+//                    schoolName = "University of South Florida",
+//                    schoolNameAbbr = "USF",
+//                    schoolShortName = "South Florida",
+//                    schoolLocationCity = "Tampa",
+//                    schoolLocationState = "FL",
+//                    schoolConference = dao.fetchConference(7),
+//                    logo = dao.fetchLogo(19)
+//                )
+//            )
+//
+//            println("RF43: addSchool Result => $addSchool")
+
             val schoolList = dao.fetchAllSchools()
             call.respondHtml(status = HttpStatusCode.OK) {
                 pageHead()
