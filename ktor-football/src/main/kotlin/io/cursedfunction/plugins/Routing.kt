@@ -1,5 +1,6 @@
 package io.cursedfunction.plugins
 
+import io.cursedfunction.content.addSchool
 import io.cursedfunction.content.pageHead
 import io.cursedfunction.content.schoolsScreen
 import io.cursedfunction.data.dao.SchoolDao
@@ -8,6 +9,7 @@ import io.ktor.server.application.*
 import io.ktor.server.html.*
 import io.ktor.server.http.content.*
 import io.ktor.server.plugins.statuspages.*
+import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.html.body
@@ -61,6 +63,23 @@ fun Application.configureRouting(dao: SchoolDao) {
         )
 
         get("/") {
+            val schoolList = dao.fetchAllSchools()
+            call.respondHtml(status = HttpStatusCode.OK) {
+                pageHead()
+                body {
+                    classes = setOf("bg-zinc-200")
+                    div {
+                        classes = setOf("pb-8")
+//                        attributes["style"] = """background-image: url('img/background.jpg')"""
+
+                        schoolsScreen(schoolList)
+                    }
+                }
+            }
+        }
+
+        get("/add-school") {
+
 //            val addSchool = dao.addSchool(
 //                School(
 //                    schoolId = 0,
@@ -76,19 +95,23 @@ fun Application.configureRouting(dao: SchoolDao) {
 //
 //            println("RF43: addSchool Result => $addSchool")
 
-            val schoolList = dao.fetchAllSchools()
-            call.respondHtml(status = HttpStatusCode.OK) {
+            call.respondHtml {
                 pageHead()
                 body {
                     classes = setOf("bg-zinc-200")
-                    div {
-                        classes = setOf("pb-8")
-//                        attributes["style"] = """background-image: url('img/background.jpg')"""
 
-                        schoolsScreen(schoolList)
-                    }
+                    addSchool(
+                        logos = emptyList(),
+                        conferences = emptyList()
+                    )
                 }
             }
+        }
+
+        post("/insert-school") {
+            val params = call.receiveParameters()
+            println("RF43: incoming => $params")
+            println("RF43: SchoolName => ${params["schoolName"]}")
         }
     }
 }

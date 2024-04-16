@@ -1,10 +1,7 @@
 package io.cursedfunction.content
 
 import io.cursedfunction.data.dto.School
-import kotlinx.html.FlowContent
-import kotlinx.html.classes
-import kotlinx.html.div
-import kotlinx.html.h1
+import kotlinx.html.*
 
 fun FlowContent.schoolsScreen(schools: List<School>) {
 
@@ -15,12 +12,15 @@ fun FlowContent.schoolsScreen(schools: List<School>) {
             +"NCAA Football"
         }
 
+        a {
+            classes = setOf("text-xl text-slate-950 hover:text-cyan-600 pl-4 pt-4")
+            href = "/add-school"
+
+            +"Add a School"
+        }
+
         div {
             classes = setOf("grid grid-cols-[repeat(3,320px)] place-content-center gap-5 mt-10")
-
-            schools.forEach { school ->
-                schoolCard(school)
-            }
 
             schools.forEach { school ->
                 schoolCard(school)
