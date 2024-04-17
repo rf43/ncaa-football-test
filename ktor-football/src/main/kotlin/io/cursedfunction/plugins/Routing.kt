@@ -94,6 +94,8 @@ fun Application.configureRouting(dao: SchoolDao) {
 //            )
 //
 //            println("RF43: addSchool Result => $addSchool")
+            val logos = dao.fetchAllLogos()
+            val conferences = dao.fetchAllConferences()
 
             call.respondHtml {
                 pageHead()
@@ -101,8 +103,8 @@ fun Application.configureRouting(dao: SchoolDao) {
                     classes = setOf("bg-zinc-200")
 
                     addSchool(
-                        logos = emptyList(),
-                        conferences = emptyList()
+                        logos = logos,
+                        conferences = conferences
                     )
                 }
             }

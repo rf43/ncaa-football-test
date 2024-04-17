@@ -58,20 +58,14 @@ fun FlowContent.addSchool(logos: List<Logo>, conferences: List<Conference>) {
                                                             "focus-within:ring-slate-600 sm:max-w-md"
                                                 )
 
-                                            span {
-                                                classes =
-                                                    setOf("flex select-none items-center pl-3 text-gray-500 sm:text-sm")
-                                                +"School Name"
-                                            }
-
                                             input {
                                                 id = "schoolname"
                                                 name = "schoolname"
                                                 type = InputType.text
-                                                placeholder = "school name"
+                                                placeholder = "Enter School Name"
                                                 classes =
                                                     setOf(
-                                                        "block flex-1 border-0 bg-transparent py-1.5 pl-1 " +
+                                                        "block flex-1 border-0 py-1.5 pl-1 " +
                                                                 "text-gray-900 placeholder:text-gray-400 " +
                                                                 "focus:ring-0 sm:text-sm sm:leading-6 " +
                                                                 "focus:outline-none"
@@ -112,6 +106,64 @@ fun FlowContent.addSchool(logos: List<Logo>, conferences: List<Conference>) {
                                     p {
                                         classes = setOf("mt-3 text-sm leading-6 text-gray-600")
                                         +"This is just a representation of what a multiline textarea would look like."
+                                    }
+                                }
+                                // endregion
+
+                                // region Logos Section
+                                div {
+                                    classes = setOf("col-span-full")
+
+                                    label {
+                                        classes = setOf("block text-sm font-medium leading-6 text-gray-900")
+                                        htmlFor = "logos"
+
+                                        +"Choose a school logo"
+                                    }
+
+                                    select {
+                                        id = "logos"
+                                        name = "logos"
+
+                                        optGroup {
+                                            label = "Choose A School Logo"
+
+                                            logos.forEach { logoData ->
+                                                option {
+                                                    value = logoData.logoToken
+                                                    +logoData.logoToken
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                // endregion
+
+                                // region Conferences Section
+                                div {
+                                    classes = setOf("col-span-full")
+
+                                    label {
+                                        classes = setOf("block text-sm font-medium leading-6 text-gray-900")
+                                        htmlFor = "conferences"
+
+                                        +"Choose a conference"
+                                    }
+
+                                    select {
+                                        id = "conferences"
+                                        name = "conferences"
+
+                                        optGroup {
+                                            label = "Choose A Conference"
+
+                                            conferences.forEach { conference ->
+                                                option {
+                                                    value = "${conference.conferenceId}"
+                                                    +conference.fullName
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                                 // endregion

@@ -19,6 +19,18 @@ class SchoolDaoImpl : SchoolDao {
         }
     }
 
+    override suspend fun fetchAllLogos(): List<Logo> = DatabaseFactory.dbQuery {
+        LogosTable.selectAll().map { row ->
+            resultRowToLogo(row)
+        }
+    }
+
+    override suspend fun fetchAllConferences(): List<Conference> = DatabaseFactory.dbQuery {
+        ConferencesTable.selectAll().map { row ->
+            resultRowToConference(row)
+        }
+    }
+
     override suspend fun fetchSchool(id: Int): School? = DatabaseFactory.dbQuery {
         SchoolsTable.select {
             SchoolsTable.schoolId eq id
